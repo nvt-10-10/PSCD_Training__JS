@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+3:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <main class="main">
+        <h1 class="title">Data Table With Full Features</h1>
+        <div class="act__wrap">
+            <div class="show">
+                Show
+                <select name="" id="entries">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+
+                entries
+            </div>
+
+            <input type="search" name="search" id="" class="search" placeholder="Search">
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="table-title" data-sort="RenderingEngine__ASC">Rendering engine</th>
+                    <th class="table-title" data-sort="Browser__ASC">Browser</th>
+                    <th class="table-title" data-sort="Platform__ASC">Platform(s)</th>
+                    <th class="table-title" data-sort="EngineVersion__ASC">Engine version</th>
+                    <th class="table-title" data-sort="CssGrade__ASC">CSS grande</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="table-title">
+                        Rendering engine
+                    </th>
+                    <th class="table-title">Browser</th>
+                    <th class="table-title">Platform(s)</th>
+                    <th class="table-title">Engine version</th>
+                    <th class="table-title">CSS grande</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="page">
+            <span class="dataTables_info">Showing 1 to 10 of 0 entries</span>
+            <div class="dataTables_paginate">
+                <button class="prev btn">Previous</button>
+                <ul class="page__list">
+                    <li class="page__item page__active">1</li>
+                    <li class="page__item">2</li>
+                    <li class="page__item">3</li>
+                    <li class="page__item">4</li>
+                    <li class="page__item">5</li>
+                </ul>
+                <button class="next btn">Next</button>
+            </div>
+        </div>
+    </main>
+</body>
+
+<script src="javascrip.js"></script>
+
+</html>
