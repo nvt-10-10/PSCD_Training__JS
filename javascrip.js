@@ -1,5 +1,4 @@
 let arrInit = [];
-
 let html = "";
 let page = 0;
 let entriesNumber = 10;
@@ -41,8 +40,6 @@ function initData(entriesNumber, page, keyword, propertySort, order) {
     page * entriesNumber + entriesNumber > arr.length
       ? arr.length
       : i + entriesNumber;
-  console.log(i + "\t" + n);
-  console.log(arr.length);
   for (i; i < n; i++) {
     console.log(`${arr[i].RenderingEngine}`);
     html += `
@@ -99,7 +96,7 @@ function search(keyword) {
   return arrSearch;
 }
 
-function sortArrayByProperty(arr, property, order = "ASC") {
+function sortArrayByProperty(arr, property, order) {
   const sortOrder = order === "DESC" ? -1 : 1;
   if (property === "EngineVersion") {
     return arr.sort((a, b) => {
@@ -122,8 +119,7 @@ function sortArrayByProperty(arr, property, order = "ASC") {
   }
 }
 
-// Khởi tạo dữ liệu
-for (let i = 0; i < 50; i++) {
+for (let i = 0; i < 100; i++) {
   arrInit.push(generateRandomData());
 }
 
@@ -131,7 +127,6 @@ initData(entriesNumber, page, "", propertySort, order);
 
 $("#entries").change(function () {
   entriesNumber = parseInt($(this).val());
-  console.log(entriesNumber);
   initData(entriesNumber, 0, keyword, propertySort, order);
 });
 
@@ -149,18 +144,17 @@ $(document).on("click", ".page__item", function () {
 $(document).on("click", ".table-title", function () {
   let sort = $(this).data("sort");
   let arrSort = sort.split("__");
-  console.log(sort);
-  propertySort = arrSort[0];
-  order = arrSort[1];
-  console.log(propertySort + "\t" + order);
   let newSort = sort.endsWith("__ASC")
     ? sort.replace("__ASC", "__DESC")
     : sort.replace("__DESC", "__ASC");
-  initData(entriesNumber, page, keyword, propertySort, order);
-  console.log(newSort);
+  propertySort = arrSort[0];
+  order = arrSort[1];
+  console.log(propertySort + "\t" + order);
+  initData(entriesNumber, 0, keyword, propertySort, order);
   $(this).data("sort", newSort);
-
-  $(this).affter;
+  $(this).hasClass("reverse")
+    ? $(this).removeClass("reverse")
+    : $(this).addClass("reverse");
 });
 
 $(".prev").on("click", function () {

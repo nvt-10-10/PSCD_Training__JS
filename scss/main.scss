@@ -79,6 +79,7 @@ tfoot .table-title::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 30px;
   color: #666666;
   > span {
     font-size: 1.4rem;
@@ -92,6 +93,7 @@ tfoot .table-title::after {
 
   &__list {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
   }
 
@@ -135,4 +137,8 @@ tfoot .table-title::after {
 
 .table-title:hover {
   cursor: pointer;
+}
+
+.reverse.table-title::after {
+  rotate: -90deg;
 }
