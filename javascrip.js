@@ -152,6 +152,7 @@ $(document).on("click", ".table-title", function () {
   console.log(propertySort + "\t" + order);
   initData(entriesNumber, 0, keyword, propertySort, order);
   $(this).data("sort", newSort);
+  $(".table-title").removeClass("reverse");
   $(this).hasClass("reverse")
     ? $(this).removeClass("reverse")
     : $(this).addClass("reverse");
