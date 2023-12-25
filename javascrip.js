@@ -1,27 +1,22 @@
 let imgLength = $(".bxSlider__thumb").length;
 let index = 0;
+let $dotList = $("#dot__list");
+let $list__dot = $(".dot");
 let html = "";
-
 for (let i = 0; i < imgLength; i++) {
   html += `<div class="dot ${
     i === 0 ? "dot__active" : ""
-  }" data-index=${i}></div>`;
+  }" data-index="${i}"></div>`;
+  $dotList.append(dotElement);
 }
 
-$("#dot__list").html(html);
-let $list__dot = $(".dot");
-
 function addDotActive(index) {
-  $(".dot.dot__active").removeClass("dot__active");
-  $list__dot.each(function () {
-    if (parseInt($(this).data("index")) === index) {
-      $(this).addClass("dot__active");
-    }
-  });
+  $(".dot__active").removeClass("dot__active");
+  $(`.dot:eq(${index + 1})`).addClass("dot__active");
 }
 
 function addImgActive(index) {
-  $(".bxSlider__thumb.bxSlider__active").fadeOut(400, function () {
+  $(".bxSlider__active").fadeOut(400, function () {
     $(this).removeClass("bxSlider__active");
     $(".bxSlider__thumb:eq(" + index + ")")
       .addClass("bxSlider__active")
