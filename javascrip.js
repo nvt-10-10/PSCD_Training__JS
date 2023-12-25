@@ -98,11 +98,11 @@ function search(keyword) {
 
 function sortArrayByProperty(arr, property, order) {
   const sortOrder = order === "DESC" ? -1 : 1;
-  if (property === "EngineVersion") {
+  console.log(sortOrder);
+  if (isNaN(arr[property])) {
     return arr.sort((a, b) => {
       const valueA = a[property];
       const valueB = b[property];
-
       if (valueA < valueB) return -1 * sortOrder;
       if (valueA > valueB) return 1 * sortOrder;
       return 0;
@@ -111,7 +111,6 @@ function sortArrayByProperty(arr, property, order) {
     return arr.sort((a, b) => {
       const valueA = a[property].toLowerCase();
       const valueB = b[property].toLowerCase();
-
       if (valueA < valueB) return -1 * sortOrder;
       if (valueA > valueB) return 1 * sortOrder;
       return 0;
@@ -135,13 +134,13 @@ $(".search").on("input", function () {
   initData(entriesNumber, 0, keyword, propertySort, order);
 });
 
-$(document).on("click", ".page__item", function () {
+$(".page__list").on("click", ".page__item", function () {
   page = parseInt($(this).data("page"));
   entriesNumber = parseInt($("#entries").val());
   initData(entriesNumber, page, keyword, propertySort, order);
 });
 
-$(document).on("click", ".table-title", function () {
+$(".table").on("click", ".table-title", function () {
   let sort = $(this).data("sort");
   let arrSort = sort.split("__");
   let newSort = sort.endsWith("__ASC")
@@ -158,15 +157,19 @@ $(document).on("click", ".table-title", function () {
     : $(this).addClass("reverse");
 });
 
-$(".prev").on("click", function () {
-  page = parseInt($(".page__active").data("page")) - 1 < 0 ? page : --page;
-  initData(entriesNumber, page, keyword, propertySort, order);
+$(".prev").on("click", function (event) {
+  page = parseInt($(".page__active").data("page"));
+
+  page - 1 < 0
+    ? event.stopPropagation()
+    : initData(entriesNumber, --page, keyword, propertySort, order);
 });
 
 $(".next").on("click", function () {
-  page =
-    parseInt($(".page__active").data("page")) + 1 == pageNumber ? page : ++page;
-  initData(entriesNumber, page, keyword, propertySort, order);
+  page = parseInt($(".page__active").data("page"));
+  page + 1 == pageNumber
+    ? event.stopPropagation()
+    : initData(entriesNumber, ++page, keyword, propertySort, order);
 });
 
 $(".next").hover(function () {
