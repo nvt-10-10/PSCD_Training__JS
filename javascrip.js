@@ -1,18 +1,17 @@
 let imgLength = $(".bxSlider__thumb").length;
 let index = 0;
-let $dotList = $("#dot__list");
-let $list__dot = $(".dot");
+let dotList = $("#dot__list");
+let list__dot = $(".dot");
 let html = "";
 for (let i = 0; i < imgLength; i++) {
   html += `<div class="dot ${
     i === 0 ? "dot__active" : ""
   }" data-index="${i}"></div>`;
-  $dotList.append(dotElement);
 }
-
+dotList.html(html);
 function addDotActive(index) {
   $(".dot__active").removeClass("dot__active");
-  $(`.dot:eq(${index + 1})`).addClass("dot__active");
+  $(`.dot:eq(${index})`).addClass("dot__active");
 }
 
 function addImgActive(index) {
