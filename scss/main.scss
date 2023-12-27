@@ -14,28 +14,26 @@
     position: relative;
     margin: 0 30px;
     max-width: 600px;
+    overflow: hidden;
     // height: 363.75px;
   }
   &__list {
     display: flex;
-    max-width: 100%;
     max-height: 450px;
-    overflow: hidden;
+    position: relative;
   }
 
   &__thumb {
-    // display: none;
+    display: none;
     flex-shrink: 0;
-    width: 100%;
     position: relative;
     box-shadow: 0 0 5px #ccc;
-    border: 5px solid #fff;
     background: #fff;
   }
 
   &__img {
     display: block;
-    width: 100%;
+    width: 540px;
     object-fit: cover;
 
     transition: filter 0.5s;
@@ -71,7 +69,8 @@
   &:hover,
   &__active {
     cursor: pointer;
-    background-color: #000;
+    // background-color: #000;
+    background-color: red;
   }
 }
 

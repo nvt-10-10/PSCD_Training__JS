@@ -1,45 +1,59 @@
 let imgLength = $(".bxSlider__thumb").length;
 let index = 0;
-let $dotList = $("#dot__list");
-
 let html = "";
+let check = false;
+let check1 = false;
 for (let i = 0; i < imgLength; i++) {
-  let dotClass = i === 0 ? "dot__active" : "";
-  html += `<div class="dot ${dotClass}" data-index=${i}></div>`;
+  html += `<div class="dot ${i === 0 ? "dot__active" : ""}" data-index=${i}></div>`;
 }
-$dotList.html(html);
-
-let $list__dot = $(".dot");
-
-function addDotActive(index) {
-  $(".dot.dot__active").removeClass("dot__active");
-  $list__dot.each(function () {
-    if (parseInt($(this).data("index")) === index) {
-      $(this).addClass("dot__active");
+$("#dot__list").html(html);
+function addDotActive(indexDot) {
+  $(".dot__active").removeClass("dot__active");
+  $(`#dot__list .dot:eq(${indexDot})`).addClass("dot__active");
+}
+function resetSlider(slideWidth) {
+  if (check) {
+    $("#bxSlider__list").css("left", 0);
+    for (let i = 0; i < imgLength - 1; i++) {
+      $("#bxSlider__list .bxSlider__thumb:eq(0)").appendTo("#bxSlider__list");
     }
-  });
+    check = false;
+  }
+  if (check1) {
+    $("#bxSlider__list").css("left", -(imgLength - 1) * slideWidth);
+    for (let i = 0; i < imgLength - 1; i++) {
+      $("#bxSlider__list figure:last()").prependTo("#bxSlider__list");
+    }
+    check1 = false;
+  }
 }
-
-function addImgActive(index) {
-  const slideWidth =
-    parseFloat($(".bxSlider__thumb").width()) +
-    parseFloat($(".bxSlider__thumb").css("border-width")) * 2;
-  console.log(slideWidth);
-  $(".bxSlider__thumb").animate({ translate: slideWidth * -index }, "slow");
+function addImgActive(indexImage) {
+  const slideWidth = parseFloat($(".bxSlider__thumb").width());
+  resetSlider(slideWidth);
+  if (indexImage == -1) {
+    $("#bxSlider__list figure:last()").prependTo("#bxSlider__list");
+    $("#bxSlider__list").css("left", -slideWidth);
+    $("#bxSlider__list").animate({ left: 0 }, "slow");
+    check1 = true;
+    index = imgLength - 1;
+  } else if (indexImage == imgLength) {
+    $("#bxSlider__list figure:first()").appendTo("#bxSlider__list");
+    $("#bxSlider__list").css("left", -(imgLength - 2) * slideWidth);
+    $("#bxSlider__list").animate({ left: -(imgLength - 1) * slideWidth }, "slow");
+    check = true;
+    index = 0;
+  } else {
+    $("#bxSlider__list").animate({ left: slideWidth * -index }, "slow");
+  }
   addDotActive(index);
 }
-
 $("#prev").on("click", function () {
-  index = --index < 0 ? imgLength - 1 : index;
-  addImgActive(index);
+  addImgActive(--index);
 });
-
 $("#next").on("click", function () {
-  index = ++index == imgLength ? 0 : index;
-  addImgActive(index);
+  addImgActive(++index);
 });
-
-$(document).on("click", ".dot", function () {
+$("#dot__list").on("click", ".dot", function () {
   index = $(this).data("index");
   addImgActive(index);
 });

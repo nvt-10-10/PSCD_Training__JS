@@ -186,19 +186,19 @@ section {
   position: relative;
   margin: 0 30px;
   max-width: 600px;
+  overflow: hidden;
 }
 .bxSlider__list {
   display: flex;
-  max-width: 100%;
   max-height: 450px;
-  overflow: hidden;
+  position: relative;
 }
 .bxSlider__thumb {
-  flex-shrink: 0;
+  /* display: none; */
   width: 100%;
+  flex-shrink: 0;
   position: relative;
   box-shadow: 0 0 5px #ccc;
-  border: 5px solid #fff;
   background: #fff;
 }
 .bxSlider__img {
@@ -233,9 +233,10 @@ section {
   justify-content: center;
   padding-top: 20px;
 }
-.dot:hover, .dot__active {
+.dot:hover,
+.dot__active {
   cursor: pointer;
-  background-color: #000;
+  background-color: red;
 }
 
 .btn {
